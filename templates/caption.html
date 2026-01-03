@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mb-4">
+    <h2 class="fw-bold">📱 Generator Caption Medsos</h2>
+    <p class="text-muted">Bingung mau nulis apa? Masukkan detail produkmu, dan biarkan AI meracik kata-kata promosi yang memikat pembeli.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-5">
+        <form method="POST" class="card p-4 shadow-sm border-0 bg-light">
+            <div class="mb-3">
+                <label class="form-label fw-bold">Produk apa yang mau diposting?</label>
+                <input type="text" name="produk" class="form-control" 
+                    placeholder="Contoh: Sambal Cumi Judes" required>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label fw-bold">Apa kelebihan/fitur utamanya?</label>
+                <textarea name="keunggulan" class="form-control" rows="3" 
+                    placeholder="Contoh: Pedas nampol, tahan 1 bulan suhu ruang, tanpa pengawet, potongan cumi besar." required></textarea>
+                <div class="form-text text-small">Semakin detail, hasil caption semakin bagus.</div>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label fw-bold">Mau gaya caption seperti apa?</label>
+                <select name="length" class="form-select">
+                    <option value="singkat">⚡ Singkat & Padat (Hard Selling)</option>
+                    <option value="panjang">📖 Panjang & Bercerita (Soft Selling)</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 py-2 fw-bold shadow-sm">
+                Racik Caption Sekarang ✨
+            </button>
+        </form>
+    </div>
+
+    <div class="col-md-7">
+        {% if result %}
+        <div class="result-box mt-3 mt-md-0 shadow-sm" style="border-left: 5px solid #0d6efd; padding: 25px; background: white; border-radius: 8px;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="mb-0 text-primary fw-bold">✨ Ide Caption Kamu:</h5>
+                
+                <button onclick="copyText()" id="copyBtn" class="btn btn-sm btn-outline-primary">
+                    📋 Salin Teks
+                </button>
+            </div>
+            <hr>
+            
+            <div id="hasilCaption" class="markdown-result text-secondary" style="white-space: pre-wrap;">{{ result | safe }}</div>
+            
+            <div class="mt-3 text-end">
+                <small class="text-muted fst-italic">*Jangan lupa tambahkan foto produk yang kece!</small>
+            </div>
+        </div>
+        {% else %}
+        <div class="d-flex align-items-center justify-content-center h-100 text-center text-muted border rounded-3 p-4" style="border-style: dashed !important; background-color: #f8f9fa;">
+            <div>
+                <p class="mb-0">Belum ada caption tercipta. <br>Isi formulir di samping agar jualanmu makin laris! 🚀</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    function copyText() {
+        var textElement = document.getElementById("hasilCaption");
+        
+        navigator.clipboard.writeText(textElement.innerText).then(function() {
+            var btn = document.getElementById("copyBtn");
+            var originalText = btn.innerHTML;
+            
+            btn.innerHTML = "✅ Tersalin!";
+            btn.classList.remove("btn-outline-primary");
+            btn.classList.add("btn-success");
+            
+            setTimeout(function() {
+                btn.innerHTML = originalText;
+                btn.classList.remove("btn-success");
+                btn.classList.add("btn-outline-primary");
+            }, 2000);
+        }).catch(function(err) {
+            console.error('Gagal menyalin: ', err);
+        });
+    }
+</script>
+{% endblock %}
