@@ -89,10 +89,10 @@ def caption():
         
         INSTRUKSI KHUSUS:
         1. Buat 3 Gaya Kontras:
-           - Opsi 1: Gaya Santai & Gaul (Bestie).
-           - Opsi 2: Gaya Formal & Elegan (Professional).
-           - Opsi 3: Gaya Lucu/Humoris.
-        2. Panjang: Sesuai request '{panjang_teks}'.
+            - Opsi 1: Gaya Santai & Gaul (Bestie).
+            - Opsi 2: Gaya Formal & Elegan (Professional).
+            - Opsi 3: Gaya Lucu/Humoris.
+        2. Panjang: Sesuai request '{panjang_teks}', untuk teks singkat gunakan 1-2 kalimat, sedangkan untuk teks panjang gunakan lebih panjang kalimatnya dan minimal 5 kalimat.
         3. Hashtag: gunakan hastag, hastagnya jangan spasi di setiap opsi, sertakan 5 hashtag relevan di akhir. untuk hastag jangan di spasi dengan (#)
         """
         
