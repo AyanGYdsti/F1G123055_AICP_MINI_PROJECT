@@ -56,7 +56,8 @@ def get_ai_response(system_prompt, user_input):
         response = client.chat_completion(
             messages=messages,
             max_tokens=1500,
-            temperature=0.7 
+            temperature=0.7,
+            top_p=0.9
         )
         return response.choices[0].message.content
     except Exception as e:
